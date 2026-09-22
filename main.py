@@ -261,7 +261,7 @@ class App(Overlay):
         else:
             self.wave.reset()
 
-    def handle_draw(self, hand, t):
+    def handle_draw(self, hand, t, ctrl_hand=None):
         if hand is None:
             self.end_stroke()
             self.smoother.reset()
@@ -292,6 +292,10 @@ class App(Overlay):
                         self.dwell_start, self.dwell_fired = t, False
             return
         self.dwell_key, self.dwell_progress = None, 0.0
+
+        if self.ctrl_pose == "fist":
+            self.end_stroke()  # End any active stroke immediately
+            return
 
         # Pen up/down with a little hysteresis so tracking flicker doesn't split strokes.
         if is_pointing(hand.pts):

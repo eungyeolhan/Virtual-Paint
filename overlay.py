@@ -26,7 +26,8 @@ FONT = cv2.FONT_HERSHEY_SIMPLEX
 TOOLS = ["pen", "marker", "spray", "neon", "eraser"]
 POSE_NAMES = {
     "pen": "1 finger", "marker": "2 fingers", "spray": "3 fingers",
-    "neon": "4 fingers", "eraser": "thumbs up", "open": "open palm", None: "-",
+    "neon": "4 fingers", "eraser": "thumbs up", "open": "open palm",
+    "fist": "idle", None: "-",
 }
 
 # (name, BGR)
@@ -231,7 +232,11 @@ class Overlay:
         ctrl = self.hands[1]
         if ctrl is not None:
             x, y = ctrl.pts[0]
-            put_text(out, self.tool.upper(), (x - 25, y + 28), 0.6, (80, 220, 255), 2)
+            if self.ctrl_pose == "fist":
+                label_text = "IDLE"
+            else:
+                label_text = self.tool.upper()
+            put_text(out, label_text, (x - 25, y + 28), 0.6, (80, 220, 255), 2)
 
     def draw_cursor(self, out):
         if self.cursor is None:
@@ -333,7 +338,8 @@ class Overlay:
             f"DRAW HAND ({self.draw_label}): point with your index finger to draw",
             "CONTROL HAND: 1 finger = Pen | 2 = Marker | 3 = Spray",
             "              4 fingers (thumb in) = Neon | Thumbs up = Eraser",
-            "              Fist / open palm = keep tool | Wave palm = clear",
+            "              Open palm = keep tool | Wave palm = clear",
+            "              Fist = pause drawing",
             "",
             "Hover your drawing fingertip over the toolbar ~1s to press a button",
             "Keys: 1-5 tools  [ ] size  c colour  u undo  x clear  s save  n next camera",

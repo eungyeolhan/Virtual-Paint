@@ -66,6 +66,8 @@ def classify_control(pts, gesture: str):
         return "eraser"
     i, m, r, p, thumb = finger_states(pts)
     pattern = (i, m, r, p)
+    if pattern == (False, False, False, False):
+        return "fist"
     if pattern == (True, False, False, False):
         return "pen"
     if pattern == (True, True, False, False):

@@ -1,0 +1,4 @@
+# mediapipe 1.x crashes on macOS right now, so stay on the 0.10 series.
+# mediapipe installs OpenCV (opencv-contrib-python) itself - don't add opencv-python.
+mediapipe>=0.10.30,<1.0
+numpy

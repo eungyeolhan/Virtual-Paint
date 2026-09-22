@@ -95,6 +95,17 @@ You do not need a GPU.
    ```
    You should see something like `Python 3.12.x`. (If `python` isn't found, try `py --version`, and use `py` instead of `python` in the commands below.)
 
+> **Already have Python installed, but not 3.12?** You don't need to remove it - the Windows installer can add 3.12 side by side with whatever you have. Check what's already there with the Python Launcher, which lists every version it knows about:
+> ```
+> py --list
+> ```
+> If `3.12` isn't in that list, install it as above; the launcher will pick it up automatically. Either way, target it explicitly by version so you don't accidentally use a different one:
+> ```
+> py -3.12 --version
+> py -3.12 -m venv .venv
+> ```
+> Then activate `.venv` as normal (Step 4) - once it's activated, plain `python` inside that environment is always the 3.12 you created it with, regardless of what `python --version` shows outside of it. If you don't have the `py` launcher (rare, only on very old installs), use the full path instead, e.g. `"C:\Users\YourName\AppData\Local\Programs\Python\Python312\python.exe" -m venv .venv`.
+
 ### Step 2: Put the project folder in place
 
 Put the whole `Virtual-Paint` folder (with `main.py`, `gesture_recognizer.py`, `motion.py`, `overlay.py`, `requirements.txt`, `README.md`) somewhere convenient, e.g. `C:\Users\YourName\Virtual-Paint`.
@@ -162,6 +173,16 @@ Check it worked. Open **Terminal** (press Cmd+Space, type `Terminal`, press Ente
 python3 --version
 ```
 You should see `Python 3.12.x` (3.10 to 3.12 work; **not** 3.14). If `python3` shows a different version but you installed 3.12, use `python3.12` instead of `python3` in the commands below.
+
+> **Already have Python installed, but not 3.12?** macOS ships its own Python and you may also have others from Homebrew or a previous install - you don't need to remove any of them. Install 3.12 alongside them with either option above, then check specifically for it:
+> ```
+> python3.12 --version
+> ```
+> (Homebrew installs it as `python3.12`; the python.org installer adds both `python3.12` and a `python3` symlink under `/Library/Frameworks/Python.framework`, listed first on your `PATH` after install.) If `python3.12` isn't found right after installing, close and reopen Terminal so it picks up the updated `PATH`. Once you have it, target it explicitly so you don't accidentally build the virtual environment with the wrong version:
+> ```
+> python3.12 -m venv .venv
+> ```
+> After activating `.venv` (Step 4), plain `python` inside that environment is always the 3.12 you created it with, regardless of what `python3 --version` shows outside of it.
 
 ### Step 2: Put the project folder in place
 

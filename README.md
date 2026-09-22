@@ -287,7 +287,8 @@ You can also keep the model somewhere else and point to it with `--model path/to
 | 3 fingers | **Spray**: speckled spray paint that builds up as you linger |
 | 4 fingers, thumb tucked in | **Neon**: glowing line with a bright core |
 | Thumbs up | **Eraser** |
-| Fist or open palm | Keeps whatever tool is selected |
+| Open palm | Keeps whatever tool is selected |
+| Fist | Puts the drawing on idle |
 | Wave open palm side to side | **Clears the canvas** (undoable with `U`) |
 
 Tool changes only register when your control hand is held fairly **still** for a fraction of a second. That's deliberate, so moving your hand around doesn't flip tools by accident. The current tool's name is shown next to your control hand.
